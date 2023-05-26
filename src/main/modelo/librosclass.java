@@ -1,4 +1,4 @@
-package com.web.proyectocanchasg1.modelo;
+package com.web.parcialWeb.modelo;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -51,60 +51,57 @@ public class libros {
     return autor();
   }
 
-  public int getHoraC() {
-    return Hora_cerrado;
+  public int getPrecio() {
+    return precio;
+  }
+  public String getubicacion() {
+    return ubicacion;
+  }
+  public void setlibro(Long Nombre_libro) {
+    this.Nombre_libro = Nombre_libro;
+  }
+  public void setReferencia(String referencia) {
+    this.referencia = referencia;
+  }
+  public void setAutor(String autor) {
+    this.Autor = autor;
+  }
+  public void setPrecio(int precio) {
+    precio = precio;
   }
 
-  public String getFecha() {
-    return Fecha_canchas;
-  }
-
-  public void setIdCancha(Long idCancha) {
-    this.idCanchas = idCancha;
-  }
-
-  public void setNombre(String nombre) {
-    Nombre_canchas = nombre;
-  }
-  public void setFecha(String fecha) {
-    Fecha_canchas = fecha;
-  }
-  public void setHora_abierta(int hora_a) {
-    Hora_abierta = hora_a;
-  }
-
-  public void setHora_cerrado(int hora_c) {
-    Hora_cerrado = hora_c;
+  public void setubicacion(String ubacacion) {
+    ubacacion = getubicacion();
   }
 
   public JSONObject toJSON() throws Exception {
-    JSONObject jcancha = new JSONObject();
-    jcancha.put("id", getIdCancha());
-    jcancha.put("nombre", getNombre());
-    jcancha.put("Hora_Apertura", getHoraA());
-    jcancha.put("Hora_Close", getHoraC());
-    jcancha.put("Fecha", getFecha());
-    return jcancha;
+    JSONObject jlibros = new JSONObject();
+    jlibros.put("Titulo", getLibro());
+    jlibros.put("referencia", getReferencia());
+    jlibros.put("Autor", getAutor());
+    jlibros.put("Precio", getPrecio());
+    jlibros.put("ubicacion", getubicacion());
+    return jlibros;
   }
 
-  public static JSONArray toJSONArray( Iterable<Canchas>cancha ) throws Exception {
-    JSONArray jcancha = new JSONArray();
-    Iterator<Canchas> icancha = cancha.iterator();
+  public static JSONArray toJSONArray( Iterable<libros>librosIterable ) throws Exception {
+    JSONArray jlibros = new JSONArray();
+    Iterator<Canchas> ilibros = libros.iterator();
     while( icancha.hasNext() ) {
-      Canchas c = icancha.next();
-      jcancha.put( c.toJSON() );
+      libros c = icancha.next();
+      jlibros.put( c.toJSON() );
     }
-    return jcancha;
+    return jlibros;
   }
 
   @Override
   public String toString() {
     return "libro{" +
-      "idCanchas=" + idCanchas +
-      ", Nombre_canchas='" + Nombre_canchas + '\'' +
-      ", Hora_abierta=" + Hora_abierta +
-      ", Hora_cerrado=" + Hora_cerrado +
-      ", Fecha_canchas='" + Fecha_canchas + '\'' +
+      "Titulo=" + Titulo +
+      ", referencias='" + referencia + '\'' +
+      ", autor=" + autor +
+      ", precio=" + precio +
+      ", ubicacion='" + ubicacion + '\'' +
       '}';
   }
 }
